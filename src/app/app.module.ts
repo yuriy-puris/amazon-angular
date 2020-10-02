@@ -13,12 +13,16 @@ import { MessageComponent } from './message/message.component';
 // SERVICES
 import { RestApiService } from './rest-api.service';
 import { DataService } from './data.service';
+import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MessageComponent
+    MessageComponent,
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
