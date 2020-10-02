@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-main">
   <div class="container-fluid">
     <a routerLink="/" class="navbar-brand">
-      <img src="./assets/img/logo.png" alt="logo" id="logo">Amazon
+      <img src="./assets/images/logo.png" alt="logo" id="logo">
     </a>
     <button 
       class="navbar-toggler"
@@ -25,7 +25,7 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/categories" routerLinkActive="active" (click)="collapse()">Categories</a>
           </li>
-          <li class="nav-item ml-0 ml-md-auto" ngbDropdown>
+          <li class="nav-item ml-0 ml-md-auto" ngbDropdown #dropdown="ngbDropdown">
             <a class="nav-link dropdown-toggle" ngbDropdownToggle>
               <i class="fa fa-user mr-1"></i>
               <span *ngIf="!token">Account</span>
