@@ -8,6 +8,9 @@ const config = require('./config');
 
 const app = express();
 
+// ROUTERS
+const routesUser = require('./routes/account');
+
 mongoose.connect(config.database, err => {
     if ( err ) {
         console.log(err);
@@ -20,6 +23,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 app.use(cors());
+
+app.use('/api/account', routesUser);
 
 
 app.listen(config.port, err => {
