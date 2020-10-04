@@ -29,35 +29,20 @@
             <a class="nav-link dropdown-toggle" ngbDropdownToggle>
               <i class="fa fa-user mr-1"></i>
               <span *ngIf="!token">Account</span>
+              <span *ngIf="data.user">{{ data.user.name }}</span>
             </a>
-            <div ngbDropdown class="dropdown-menu">
-              <a 
-                *ngIf="token" 
-                (click)="closeDropdown(dropdown);collapse()"
-                routerLink="/profile" 
-                class="dropdown-item">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>Profile
+            <div ngbDropdownMenu class="dropdown-menu">
+              <a *ngIf="token" (click)="closeDropdown(dropdown);collapse();" routerLink="/profile" class="dropdown-item">
+                <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
               </a>
-              <a 
-                *ngIf="!token" 
-                (click)="closeDropdown(dropdown);collapse()"
-                routerLink="/login" 
-                class="dropdown-item">
-                <i class="fa fa-user-key" aria-hidden="true"></i>Login
+              <a *ngIf="!token" (click)="closeDropdown(dropdown);collapse();" routerLink="/login" class="dropdown-item">
+                <i class="fa fa-key" aria-hidden="true"></i> Login
               </a>
-              <a 
-                *ngIf="token" 
-                (click)="closeDropdown(dropdown);collapse()"
-                routerLink="/logout" 
-                class="dropdown-item">
-                <i class="fa fa-user-key" aria-hidden="true"></i>Logout
+              <a *ngIf="token" (click)="closeDropdown(dropdown);collapse();logout();" class="dropdown-item">
+                <i class="fa fa-key" aria-hidden="true"></i> Logout
               </a>
-              <a 
-                *ngIf="token" 
-                (click)="closeDropdown(dropdown);collapse()"
-                routerLink="/register" 
-                class="dropdown-item">
-                <i class="fa fa-user-group" aria-hidden="true"></i>Register
+              <a *ngIf="!token" (click)="closeDropdown(dropdown);collapse();" routerLink="/register" class="dropdown-item">
+                <i class="fa fa-group" aria-hidden="true"></i> Register
               </a>
             </div>
           </li>
@@ -67,7 +52,7 @@
                 routerLink="/cart"
                 routerLinkActive="active"
                 class="nav-link">
-                <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>Register
+                <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>Card
               </a>
           </li>
         </ul>

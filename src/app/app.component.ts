@@ -12,8 +12,8 @@ export class AppComponent {
   searchTerm = '';
   isCollapsed = true;
 
-  constructor(private data: DataService, private router: Router) {
-    // this.data.getProfile();
+  constructor(public data: DataService, private router: Router) {
+    this.data.getProfile();
   };
 
   get token() {

@@ -10,11 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // COMPONENTS
 import { HomeComponent } from './home/home.component';
 import { MessageComponent } from './message/message.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
 // SERVICES
 import { RestApiService } from './rest-api.service';
 import { DataService } from './data.service';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './auth-guard.service';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     MessageComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    SettingsComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +38,7 @@ import { LoginComponent } from './login/login.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [RestApiService, DataService],
+  providers: [RestApiService, DataService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
