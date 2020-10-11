@@ -11,6 +11,7 @@ const app = express();
 // ROUTERS
 const routesUser = require('./routes/account');
 const routesMain = require('./routes/main');
+const routesSeller = require('./routes/seller');
 
 mongoose.connect(config.database, err => {
     if ( err ) {
@@ -27,6 +28,7 @@ app.use(cors());
 
 app.use('/api', routesMain);
 app.use('/api/account', routesUser);
+app.use('/api/seller', routesSeller);
 
 
 app.listen(config.port, err => {
