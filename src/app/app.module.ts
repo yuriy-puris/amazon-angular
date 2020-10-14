@@ -20,6 +20,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './address/address.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { PostProductComponent } from './post-product/post-product.component';
+import { MyProductsComponent } from './my-products/my-products.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { CategoriesComponent } from './categories/categories.component';
     ProfileComponent,
     SettingsComponent,
     AddressComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    PostProductComponent,
+    MyProductsComponent
   ],
   imports: [
     BrowserModule,
