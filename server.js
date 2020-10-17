@@ -12,8 +12,9 @@ const app = express();
 const routesUser = require('./routes/account');
 const routesMain = require('./routes/main');
 const routesSeller = require('./routes/seller');
+const routesProductSearch = require('./routes/product-search');
 
-mongoose.connect(config.database, err => {
+mongoose.connect(config.database, { useMongoClient: true }, err => {
     if ( err ) {
         console.log(err);
     } else {
@@ -29,6 +30,7 @@ app.use(cors());
 app.use('/api', routesMain);
 app.use('/api/account', routesUser);
 app.use('/api/seller', routesSeller);
+app.use('/api/search', routesProductSearch);
 
 
 app.listen(config.port, err => {

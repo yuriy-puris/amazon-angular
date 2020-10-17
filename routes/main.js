@@ -2,7 +2,10 @@ const router = require('express').Router();
 const async = require('async');
 const Category = require('../models/category');
 const Product = require('../models/product');
+const Review = require('../models/review');
 
+const checkJWT = require('../middleware/check-jwt');
+const product = require('../models/product');
 
 router.route('/categories')
 	.get((req, res, next) => {
@@ -40,7 +43,7 @@ router.get('/categories/:id', (req, res, next) => {
           .limit(perPage)
           .populate('category')
           .populate('owner')
-          .populate('reviews')
+          .populate('review')
           .exec((err, products) => {
             if(err) return next(err);
             callback(err, products);
@@ -106,6 +109,7 @@ router.get('/product/:id', (req, res, next) => {
 	Product.findById({ _id: req.params.id })
 		.populate('category')
 		.populate('owner')
+		.deepPopulate('reviews.owner')
 		.exec((err, product) => {
 			if ( err ) {
 				res.json({
@@ -121,6 +125,35 @@ router.get('/product/:id', (req, res, next) => {
 				}
 			}
 		})
-})
+});
+
+router.post('/review', checkJWT, (req, res, next) => {
+	async.waterfall([
+		function(callback) {
+			Product.findOne({ _id: req.body.productId }, (err, product) => {
+				if ( product ) {
+					console.log('true')
+					callback(err, product)
+				}
+			})
+		},
+		function(product) {
+			let review = new Review();
+			review.owner = req.decoded.user._id;
+
+			if (req.body.title) review.title = req.body.title;
+			if (req.body.description) review.description = req.body.description
+			review.rating = req.body.rating;
+
+			product.reviews.push(review._id);
+			product.save();
+			review.save();
+			res.json({
+				success: true,
+				message: "Successfully added the review"
+			});
+		}
+	])
+});
 
 module.exports = router;
