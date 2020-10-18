@@ -8,6 +8,7 @@ const Product = require('../models/product');
 
 router.get('/', (req, res, next) => {
     const searchField = req.query.query;
+    console.log(searchField)
     Product.find({ title: { $regex: searchField, $options: '$i' } }, (err, products) => {
         if (err) {
             res.json({
