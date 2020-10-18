@@ -98,7 +98,6 @@ export class PostProductComponent implements OnInit {
       data['success']
         ? this.categories = data['categories']
         : this.data.error(data['message'])
-        console.log(this.categories)
     } catch (err) {
       this.data.error(err['message'])
     }
